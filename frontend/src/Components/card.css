@@ -1,0 +1,19 @@
+.main{
+  width: 285px;
+  height: 318px;
+}
+.image img{
+  width: 285px;
+  height: 318px;
+  object-fit: cover;
+}
+.container{
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.money{
+  font-size: 24px;
+  font-weight: bold;
+}
