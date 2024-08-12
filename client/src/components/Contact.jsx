@@ -23,30 +23,30 @@ export default function Contact({ listing }) {
   return (
     <>
       {landlord && (
-        <div className='flex flex-col gap-2'>
-          <p>
-            Contact <span className='font-semibold'>{landlord.username}</span>{' '}
-            for{' '}
-            <span className='font-semibold'>{listing.name.toLowerCase()}</span>
+        <div className="flex flex-col gap-4 p-4 bg-white shadow-md rounded-lg">
+          <p className="text-gray-700">
+            Reach out to <span className="font-semibold text-indigo-600">{landlord.username} </span>
+            about <span className="font-semibold text-indigo-600">{listing.name.toLowerCase()}</span>
           </p>
           <textarea
-            name='message'
-            id='message'
-            rows='2'
+            name="message"
+            id="message"
+            rows="4"
             value={message}
             onChange={onChange}
-            placeholder='Enter your message here...'
-            className='w-full border p-3 rounded-lg'
+            placeholder="Type your message here..."
+            className="w-full border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
           ></textarea>
 
           <Link
-          to={`mailto:${landlord.email}?subject=Regarding ${listing.name}&body=${message}`}
-          className='bg-slate-700 text-white text-center p-3 uppercase rounded-lg hover:opacity-95'
+            to={`mailto:${landlord.email}?subject=Regarding ${listing.name}&body=${message}`}
+            className="bg-indigo-600 text-white text-center p-3 uppercase rounded-lg hover:bg-indigo-500 transition duration-200"
           >
-            Send Message          
+            Send Message
           </Link>
         </div>
       )}
     </>
+
   );
 }

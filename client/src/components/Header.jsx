@@ -23,11 +23,11 @@ export default function Header() {
     }
   }, [location.search]);
   return (
-    <header className="bg-white shadow-md">
+    <header className="bg-white shadow-md border-b border-gray-200">
       <div className="flex justify-between items-center max-w-6xl mx-auto p-4">
         <Link to="/">
           <h1 className="text-2xl font-bold flex items-center space-x-1">
-            <span className="text-gray-600">Dhalal</span>
+            <span className="text-indigo-600">Dhalal</span>
             <span className="text-gray-800">Estate</span>
           </h1>
         </Link>
@@ -55,6 +55,11 @@ export default function Header() {
           <Link to="/about">
             <li className="text-gray-800 hover:underline hidden sm:block">
               About
+            </li>
+          </Link>
+          <Link to="/properties">
+            <li className="text-gray-800 hover:underline hidden sm:block">
+              Properties
             </li>
           </Link>
           <Link to="/profile">

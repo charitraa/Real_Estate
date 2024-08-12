@@ -46,57 +46,60 @@ export default function Home() {
     fetchOfferListings();
   }, []);
   return (
-    <div>
-      {/* top */}
-      <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
-        <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'>
-          Find your next <span className='text-slate-500'>perfect</span>
+    <div className="bg-gray-50 min-h-screen">
+      {/* Header Section */}
+      <div className="flex flex-col gap-8 p-16 px-4 max-w-7xl mx-auto">
+        <h1 className="text-gray-800 font-extrabold text-4xl lg:text-7xl">
+          Discover Your <span className="text-indigo-600">Ideal</span> Home
           <br />
-          place with ease
+          with Confidence
         </h1>
-        <div className='text-gray-400 text-xs sm:text-sm'>
-          Sahand Estate is the best place to find your next perfect place to
-          live.
+        <p className="text-gray-500 text-sm sm:text-base">
+          Dhalal offers a curated selection of properties to fit your needs.
           <br />
-          We have a wide range of properties for you to choose from.
-        </div>
+          Explore our extensive listings to find your perfect match.
+        </p>
         <Link
-          to={'/search'}
-          className='text-xs sm:text-sm text-blue-800 font-bold hover:underline'
+          to="/search"
+          className="text-sm sm:text-base text-indigo-700 font-semibold hover:underline transition duration-200"
         >
-          Let`s get started...
+          Start Your Search Now...
         </Link>
       </div>
 
-      {/* swiper */}
-      <Swiper navigation>
+      {/* Swiper Section */}
+      <Swiper navigation className="my-8">
         {offerListings &&
           offerListings.length > 0 &&
           offerListings.map((listing) => (
-            // eslint-disable-next-line react/jsx-key
-            <SwiperSlide>
+            <SwiperSlide key={listing._id}>
               <div
                 style={{
-                  background: `url(${listing.imageUrls[0]}) center no-repeat`,
-                  backgroundSize: 'cover',
+                  backgroundImage: `url(${listing.imageUrls[0]})`,
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "cover",
                 }}
-                className='h-[500px]'
-                key={listing._id}
+                className="h-[600px] rounded-lg shadow-lg"
               ></div>
             </SwiperSlide>
           ))}
       </Swiper>
 
-      {/* listing results for offer, sale and rent */}
-
-      <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10'>
+      {/* Listings Section */}
+      <div className="max-w-7xl mx-auto p-4 flex flex-col gap-12 my-12">
         {offerListings && offerListings.length > 0 && (
-          <div className=''>
-            <div className='my-3'>
-              <h2 className='text-2xl font-semibold text-slate-600'>Recent offers</h2>
-              <Link className='text-sm text-blue-800 hover:underline' to={'/search?offer=true'}>Show more offers</Link>
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-3xl font-semibold text-gray-700">Recent Offers</h2>
+              <Link
+                className="text-base text-indigo-700 hover:underline transition duration-200"
+                to="/search?offer=true"
+              >
+                View All Offers
+              </Link>
             </div>
-            <div className='flex flex-wrap gap-4'>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {offerListings.map((listing) => (
                 <ListingItem listing={listing} key={listing._id} />
               ))}
@@ -104,27 +107,35 @@ export default function Home() {
           </div>
         )}
         {rentListings && rentListings.length > 0 && (
-          <div className=''>
-            <div className='my-3'>
-              <h2 className='text-2xl font-semibold text-slate-600'>Recent places for rent</h2>
-              <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=rent'}>Show more places for rent</Link>
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-3xl font-semibold text-gray-700">Places for Rent</h2>
+              <Link
+                className="text-base text-indigo-700 hover:underline transition duration-200"
+                to="/search?type=rent"
+              >
+                View All Rentals
+              </Link>
             </div>
-            <div className='flex flex-wrap gap-4'>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {rentListings.map((listing) => (
-                console.log(listing),
-                < ListingItem listing={listing} key={listing._id} />
+                <ListingItem listing={listing} key={listing._id} />
               ))}
-
             </div>
           </div>
         )}
         {saleListings && saleListings.length > 0 && (
-          <div className=''>
-            <div className='my-3'>
-              <h2 className='text-2xl font-semibold text-slate-600'>Recent places for sale</h2>
-              <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=sale'}>Show more places for sale</Link>
+          <div className="bg-white rounded-lg shadow-md p-6">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-3xl font-semibold text-gray-700">Places for Sale</h2>
+              <Link
+                className="text-base text-indigo-700 hover:underline transition duration-200"
+                to="/search?type=sale"
+              >
+                View All Sales
+              </Link>
             </div>
-            <div className='flex flex-wrap gap-4'>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {saleListings.map((listing) => (
                 <ListingItem listing={listing} key={listing._id} />
               ))}
