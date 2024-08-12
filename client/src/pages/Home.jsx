@@ -40,7 +40,7 @@ export default function Home() {
         const data = await res.json();
         setSaleListings(data);
       } catch (error) {
-        log(error);
+        console.log(error);
       }
     };
     fetchOfferListings();
@@ -73,6 +73,7 @@ export default function Home() {
         {offerListings &&
           offerListings.length > 0 &&
           offerListings.map((listing) => (
+            // eslint-disable-next-line react/jsx-key
             <SwiperSlide>
               <div
                 style={{
@@ -110,8 +111,10 @@ export default function Home() {
             </div>
             <div className='flex flex-wrap gap-4'>
               {rentListings.map((listing) => (
-                <ListingItem listing={listing} key={listing._id} />
+                console.log(listing),
+                < ListingItem listing={listing} key={listing._id} />
               ))}
+
             </div>
           </div>
         )}
