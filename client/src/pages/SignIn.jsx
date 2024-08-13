@@ -6,6 +6,8 @@ import {
   signInSuccess,
   signInFailure,
 } from '../redux/user/userSlice';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function SignIn() {
   const [formData, setFormData] = useState({});
@@ -33,12 +35,17 @@ export default function SignIn() {
       console.log(data);
       if (data.success === false) {
         dispatch(signInFailure(data.message));
+        toast.error(data.message)
         return;
       }
       dispatch(signInSuccess(data));
-      navigate('/');
+      toast.success("Login Sucessfull");
+      setTimeout(() => {
+        navigate('/')
+      }, 2000);
     } catch (error) {
       dispatch(signInFailure(error.message));
+
     }
   };
   return (
@@ -74,7 +81,16 @@ export default function SignIn() {
           <span className='text-blue-700'>Sign up</span>
         </Link>
       </div>
-      {error && <p className='text-red-500 mt-5'>{error}</p>}
+      {/* {error && <p className='text-red-500 mt-5'>{error}</p>} */}
+      <ToastContainer position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        theme="colored" />
     </div>
   );
 }
